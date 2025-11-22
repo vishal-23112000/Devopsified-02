@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-devops-cicd
+  labels:
+    app: simple-devops-cicd
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: simple-devops-cicd
+  template:
+    metadata:
+      labels:
+        app: simple-devops-cicd
+    spec:
+      containers:
+        - name: app
+          image: IMAGE_NAME_REPLACE_ME:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: production

@@ -1,0 +1,5 @@
+NOTES:
+- Replace IMAGE_NAME_REPLACE_ME in k8s/deployment.yaml with your image (or use `sed` in CI).
+- In GitHub Actions, set the repository secrets:
+  DOCKER_USERNAME, DOCKER_PASSWORD, IMAGE_NAME (e.g. youruser/simple-devops-cicd), KUBE_CONFIG (base64 kubeconfig)
+- This workflow triggers on pushes to the main branch.

@@ -1,16 +1,33 @@
-# Use official Node.js LTS image
-FROM node:18-alpine
+# -----------------------------
+# Stage 1: Build Stage
+# -----------------------------
+FROM node:18-alpine AS build
 
-# Create app directory
+# Set working directory
 WORKDIR /usr/src/app
 
-# Install dependencies
-COPY package.json package-lock.json* ./
+# Copy package.json and package-lock.json first
+COPY package.json package-lock.json ./
+
+# Install production dependencies only
 RUN npm install --production
 
-# Bundle app source
-COPY . .
+# Copy app source
+COPY index.js public ./ 
 
-# Expose port and run
+# -----------------------------
+# Stage 2: Final Image
+# -----------------------------
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /usr/src/app
+
+# Copy node_modules and app from build stage
+COPY --from=build /usr/src/app ./
+
+# Expose port
 EXPOSE 3000
+
+# Start the app
 CMD ["node", "index.js"]

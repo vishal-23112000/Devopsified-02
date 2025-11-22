@@ -1,13 +1,11 @@
 const express = require('express');
+const path = require('path');
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-  res.json({ message: 'Hello from Simple DevOps CI/CD app!', env: process.env.NODE_ENV || 'development' });
+// Serve static files from the 'public' folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });
-
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
-});
-
-//test

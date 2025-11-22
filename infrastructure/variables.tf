@@ -16,7 +16,7 @@ variable "instance_type" {
 variable "key_name" {
   description = "Name of the SSH key pair for EC2"
   type        = string
-  default     = "anime-web-key"
+  default     = "anime-web-key-02"
 }
 
 # Public key content (from GitHub secret)

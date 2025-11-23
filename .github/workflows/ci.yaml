@@ -41,7 +41,4 @@ jobs:
         run: |
           cd infrastructure
           terraform plan -out=tfplan
-      - name: Terraform Apply
-        run: |
-          cd infrastructure
-          terraform apply -auto-approve tfplan
+    
